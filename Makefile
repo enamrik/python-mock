@@ -1,9 +1,9 @@
 
 install_deps:
-	test -d .venv || virtualenv .venv
-	. .venv/bin/activate; pip install -e .;
+	test -d .venv || virtualenv .venv  --no-site-packages
+	. .venv/bin/activate; pip install -e ".[dev]"
 
 test_only:
-	. .venv/bin/activate; pip install -r dev-requirements.txt; pytest -v -s;
+	. .venv/bin/activate; pytest -v -s
 
 test: install_deps test_only
